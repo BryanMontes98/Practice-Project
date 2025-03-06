@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -20,3 +21,4 @@ Route::get('/contact-dos', function () {
     return view('contact-dos');
 });
 
+Route::resource('post', PostController::class);
