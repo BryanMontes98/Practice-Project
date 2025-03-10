@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 use App\Models\Post;
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+use function Psy\debug;
 
 class PostController extends Controller
 {
@@ -14,22 +20,56 @@ class PostController extends Controller
      */
     public function index()
     {
+        /* $post = Post::find(1);
+        dd($post->category->title); */
+
+        $category = Category::find(1);
+        dd($category->posts[4]->title);
+
+        // Metodo para eliminar un registro
+        /* $post = Post::find(3);
+        $post->delete();
+        dd($post); */
 
 
-
-        $post = Post::create(
-            ['title' => 'Test Title',
-            'slug' => 'Test Slug',
-            'description' => 'Test Description',
-            'content' => 'Test Content',
-            'image' => 'Test Image',
+        // Metodo para actualizar un registro
+        /* $post = Post::find(2);
+        $post->update(
+            ['title' => 'Test Title Bryan',
+            'slug' => 'Test Slug Bryan',
+            'description' => 'Test Description Bryan',
+            'content' => 'Test Content Bryan',
+            'image' => 'Test Image Bryan',
             'posted' => 'Not',
             'category_id' => 1,
             ]
-        );
+        ); */
 
-        var_dump($post);
-        die();
+
+        // Metodo para crear un nuevo post
+        /* Post::create(
+            ['title' => 'Test Title new',
+            'slug' => 'Test Slug new',
+            'description' => 'Test Description new',
+            'content' => 'Test Content new',
+            'imagen' => 'Test Image new',
+            'posted' => 'Not',
+            'category_id' => 1,
+            'movies' => 'Test Movies new',
+            ]
+        ); */
+
+
+        // Metodo para crear o agregar un campo de la tabla posts
+        /* Schema::table('posts', function (Blueprint $table) {
+            $table->string('email')->nullable();
+        }); */
+
+
+        //  Metodo para eliminar un campo de la tabla posts
+        /* Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('email');
+        }); */
 
         return 'Index';
     }

@@ -14,5 +14,12 @@ class Post extends Model
         'image',
         'posted',
         'category_id',
+        'phone',
+        'votes',
     ];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }
+
