@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Category\StoreRequest;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -13,12 +16,6 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
-        Category::create([
-            'title' => 'Cate 1',
-            'slug' => 'cate-1',
-        ]);
-
         return 'Index category';
     }
 
@@ -27,15 +24,35 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.categories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+
+        /* $validated = Validator::make($request->all(), [
+            'title' => 'required|min:5',
+            'slug' => 'required|min:5',
+        ]); */
+
+        /* $request->validate([
+            'title' => 'required|min:5',
+            'slug' => 'required|min:5',
+            ]); */
+
+            // Category::create([
+                //     'title' => $request->title,
+                //     'slug' => $request->slug,
+                // ]);
+
+        Category::create($request->validated());
+        /* $validated = $request;
+        dd($validated->errors()); */
+
+        return "store";
     }
 
     /**

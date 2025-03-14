@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Http\Requests\Post\StoreRequest;
 use Illuminate\Http\Request;
 
+use App\Models\Category;
 use App\Models\Post;
 
 use Illuminate\Database\Schema\Blueprint;
@@ -23,8 +24,8 @@ class PostController extends Controller
         /* $post = Post::find(1);
         dd($post->category->title); */
 
-        $category = Category::find(1);
-        dd($category->posts[4]->title);
+        /* $category = Category::find(1);
+        dd($category->posts[4]->title); */
 
         // Metodo para eliminar un registro
         /* $post = Post::find(3);
@@ -42,20 +43,6 @@ class PostController extends Controller
             'image' => 'Test Image Bryan',
             'posted' => 'Not',
             'category_id' => 1,
-            ]
-        ); */
-
-
-        // Metodo para crear un nuevo post
-        /* Post::create(
-            ['title' => 'Test Title new',
-            'slug' => 'Test Slug new',
-            'description' => 'Test Description new',
-            'content' => 'Test Content new',
-            'imagen' => 'Test Image new',
-            'posted' => 'Not',
-            'category_id' => 1,
-            'movies' => 'Test Movies new',
             ]
         ); */
 
@@ -79,15 +66,56 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        // $category = Category::pluck('id', 'title');
+        $category = Category::get();
+        return view('dashboard.posts.create', compact('category'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        // dd($request->all());
+        // dd(request()->all());
+
+
+        // Metodo para validar el nuevo post
+        /* $request->validate([
+            'title' => 'required|min:5|max:500',
+            'slug' => 'required|min:5|max:500',
+            'description' => 'required|min:5',
+            'content' => 'required|min:5',
+            // 'image' => 'required|mimes:jpg,jpeg,png,gif',
+            'posted' => 'required',
+            'category_id' => 'required',
+        ]); */
+
+
+        // Metodo para crear un nuevo post
+        /* Post::create(
+            ['title' => $request->title,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'content' => $request->content,
+            'image' => $request->image,
+            'posted' => $request->posted,
+            'category_id' => $request->category_id,
+            'movie' => $request->movie,
+            ]
+        ); */
+
+        /* $request->validate([
+            ''
+        ]); */
+
+        // Segundo metodo para crear un nuevo post
+        /* Post::create($request->all()); */
+
+        Post::create($request->validated());
+
+        // retornar a la vista de crear posts
+        return to_route('post.index');
     }
 
     /**

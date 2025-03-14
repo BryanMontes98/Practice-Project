@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Daftar Pengguna</h3>
+                    <h3>Vista User</h3>
                     {{ $datos[0] }} <br>
                 </div>
             </div>

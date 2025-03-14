@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        /* Schema::table('posts', function (Blueprint $table) {
             $table->string('phone', 250)->nullable()->change();
-        });
+        }); */
     }
 
     /**

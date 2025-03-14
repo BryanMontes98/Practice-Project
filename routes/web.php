@@ -11,7 +11,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', [UserController::class, 'index'])->name('user');
+// Rutas de prueba
+/* Route::get('/user', [UserController::class, 'index'])->name('user');
 
 Route::get('/contact', function () {
     // return redirect('contact');
@@ -21,7 +22,8 @@ Route::get('/contact', function () {
 
 Route::get('/contact-dos', function () {
     return view('contact-dos');
-});
+}); */
 
+// Rutas de Dashboard
 Route::resource('category', CategoryController::class);
 Route::resource('post', PostController::class);
