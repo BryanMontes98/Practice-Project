@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\StoreRequest;
+use App\Http\Requests\UpdateRequest;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
@@ -58,7 +59,8 @@ class PostController extends Controller
             $table->dropColumn('email');
         }); */
 
-        return 'Index';
+        $posts = Post::orderBy('id', 'desc')->paginate(2);
+        return view('dashboard.posts.index', compact('posts'));
     }
 
     /**
@@ -131,15 +133,17 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $category = Category::get();
+        return view('dashboard.posts.edit', compact('category', 'post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdateRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        return to_route('post.index');
     }
 
     /**

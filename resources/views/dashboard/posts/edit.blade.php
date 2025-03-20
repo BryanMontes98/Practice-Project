@@ -8,41 +8,42 @@
 
     @include('dashboard.fragment._errors-form')
 
-    <form action=" {{ route('post.store') }} " method="post">
+    <form action=" {{ route('post.update', $post->id) }} " method="post">
 
+        @method('PATCH')
         @csrf
 
         <div class="form-group">
             <div class="card w-50 mx-auto">
                 <div class="card-body">
-                    <h2 class="w-100 text-center">Formulario Posts</h2><br>
+                    <h2 class="w-100 text-center">Formulario Posts Edit</h2><br>
                     <div class="form-group d-flex">
                         <div class="col-6 text-center">
                             <label for="">Title</label><br>
-                            <input type="text" name="title"><br><br>
+                            <input type="text" name="title" class="col-8" value="{{ $post->title }}"><br><br>
                         </div>
                         <div class="col-6 text-center">
                             <label for="">Slug</label><br>
-                            <input type="text" name="slug"><br><br>
+                            <input type="text" name="slug" class="col-8" value="{{ $post->slug }}"><br><br>
                         </div>
                     </div>
 
                     <div class="form-group d-flex">
                         <div class="col-6 text-center">
                             <label for="">Description</label><br>
-                            <textarea name="description"></textarea><br><br>
+                            <textarea name="description" class="col-8">{{ $post->description }}</textarea><br><br>
                         </div>
                         <div class="col-6 text-center">
                             <label for="">Content</label><br>
-                            <input type="text" name="content"><br><br>
+                            <input type="text" name="content" class="col-8" value="{{ $post->content }}"><br><br>
                         </div>
                     </div>
 
                     <div class="form-group d-flex">
                         <div class="col-6 text-center">
                             <label for="">Category</label><br>
-                            <select name="category_id">
-                                <option value="" selected disabled>Select an option</option>
+                            <select name="category_id" class="col-8">
+                                <option value="{{ ($post->category->id) ? $post->category->id : '' }}">{{ $post->category->title }}</option>
                                 @foreach ($category as $category)
                                     {
                                     <option value="{{ $category->id }}"> {{ $category->title }} </option>
@@ -52,8 +53,8 @@
                         </div>
                         <div class="col-6 text-center">
                             <label for="">Posted</label><br>
-                            <select name="posted">
-                                <option value="" selected disabled>Select an option</option>
+                            <select name="posted" class="col-8">
+                                <option value="{{ ($post->posted) ? $post->posted : '' }}"> {{ $post->posted }} </option>
                                 <option value="yes">Yes</option>
                                 <option value="not">Not</option>
                             </select><br><br>
