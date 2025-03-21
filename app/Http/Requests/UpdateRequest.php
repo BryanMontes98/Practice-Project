@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
                 // 'slug' => 'required|min:5|max:500',
                 'description' => 'required|min:5',
                 'content' => 'required|min:5',
-                // 'image' => 'required|mimes:jpg,jpeg,png,gif',
+                'image' => 'mimes:jpg,jpeg,png,gif',
                 'posted' => 'required',
                 'category_id' => 'required',
         ];

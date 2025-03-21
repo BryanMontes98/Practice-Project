@@ -59,7 +59,7 @@ class PostController extends Controller
             $table->dropColumn('email');
         }); */
 
-        $posts = Post::orderBy('id', 'desc')->paginate(2);
+        $posts = Post::orderBy('id', 'desc')->Paginate(2);
         return view('dashboard.posts.index', compact('posts'));
     }
 
@@ -70,7 +70,8 @@ class PostController extends Controller
     {
         // $category = Category::pluck('id', 'title');
         $category = Category::get();
-        return view('dashboard.posts.create', compact('category'));
+        $post = new Post();
+        return view('dashboard.posts.create', compact('category', 'post'));
     }
 
     /**
@@ -142,7 +143,14 @@ class PostController extends Controller
      */
     public function update(UpdateRequest $request, Post $post)
     {
-        $post->update($request->validated());
+        $data = $request->validated();
+        // dd($data['image']);
+        if(isset($data['image'])) {
+            $data['image'] = $fileName = time().'.'.$data['image']->getClientOriginalName().$data['image']->extension();
+            $request->image->move(public_path('/updates/posts'), $fileName);
+        }
+
+        $post->update($data);
         return to_route('post.index');
     }
 

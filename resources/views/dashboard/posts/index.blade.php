@@ -41,6 +41,8 @@
         </tbody>
     </table>
     <br>
-    {{ $posts->links() }}
+    <div class="w-100 d-flex justify-content-between">
+        {{ $posts->links() }}
+    </div>
 @endsection
 
