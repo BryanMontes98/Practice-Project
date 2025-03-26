@@ -34,14 +34,18 @@
                     <td>
                         <button type="button" class="btn btn-primary"><a href="{{ route('post.show', $p->id); }}" class="text-decoration-none" style="color: #fff">View</a></button>
                         <button type="button" class="btn btn-warning"><a href="{{ route('post.edit', $p->id); }}" class="text-decoration-none" style="color: #fff">Editar</a></button>
-                        <button type="button" class="btn btn-danger"><a href="{{ route('post.destroy', $p->id) }}" class="text-decoration-none" style="color: #fff">Eliminar</a></button>
+                        <form action="{{ route('post.destroy', $p->id) }}" method="post" class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     <br>
-    <div class="w-100 d-flex justify-content-between">
+    <div class="w-100 d-flex justify-content-center">
         {{ $posts->links() }}
     </div>
 @endsection
