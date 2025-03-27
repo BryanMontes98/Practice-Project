@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\StoreRequest;
+use App\Http\Requests\Category\UpdateResquest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return 'Index category';
+        $categories = Category::paginate(3);
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     /**
@@ -51,8 +53,8 @@ class CategoryController extends Controller
         Category::create($request->validated());
         /* $validated = $request;
         dd($validated->errors()); */
-
-        return "store";
+        $categories = Category::paginate(3);
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     /**
@@ -60,7 +62,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('dashboard.categories.show', compact('category'));
     }
 
     /**
@@ -68,15 +70,23 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateResquest $request, Category $category)
     {
-        //
+        $data = $request->validated();
+
+        if(isset($data['image'])) {
+            $data['image'] == $fileName = time() . '.' . $data['image']->getClientOriginalExtension();
+            $request->image->move(base_path('updates/categories', $fileName));
+        }
+
+        $category->update($data);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -84,6 +94,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('category.index');
     }
 }
