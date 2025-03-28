@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="col-6 text-center">
-                                <img src="../img/img-not-found.jpg" alt="{{ $category->title }}" width="200" height="200">
+                                <img src="../../img/img-not-found.jpg" alt="{{ $category->title }}" width="200" height="200">
                                 <div><b>Name image:</b> {{ $category->image ? $category->image : 'No image' }}</div>
                             </div>
                         </div>

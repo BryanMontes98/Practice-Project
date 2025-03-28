@@ -24,6 +24,25 @@ Route::get('/contact-dos', function () {
     return view('contact-dos');
 }); */
 
-// Rutas de Dashboard
-Route::resource('category', CategoryController::class);
-Route::resource('post', PostController::class);
+// ----- Rutas de Dashboard -----
+
+// ► Diferentes formas de agrupar rutas
+
+/* Route::prefix('dashboard')->group(function () {
+    Route::resource('category', CategoryController::class);
+    Route::resource('post', PostController::class);
+}); */
+
+/* Route::resources(
+    [
+        'category' => CategoryController::class,
+        'post' => PostController::class,
+    ]
+); */
+
+Route::group(['prefix' => 'dashboard'], function () {
+    Route::resource('category', CategoryController::class);
+    Route::resource('post', PostController::class);
+});
+
+

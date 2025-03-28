@@ -30,7 +30,7 @@
                     </div>
                     <div class="text-center col-6">
                         <div class="col-12 text-center">
-                            <img src="{{ $post->image ? '../updates/posts/' . $post->image : '../img/img-not-found.jpg'}}" alt="{{ $post->title }}" width="200">
+                            <img src="{{ $post->image ? '../../updates/posts/' . $post->image : '../../img/img-not-found.jpg'}}" alt="{{ $post->title }}" width="200">
                             <h4><b>Title:</b> {{ $post->image ? $post->image . '.' : 'No Image' }}</h4>
                         </div>
                     </div>
