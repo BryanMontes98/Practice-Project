@@ -60,7 +60,7 @@ class PostController extends Controller
         }); */
 
         $posts = Post::orderBy('id', 'desc')->Paginate(2);
-        return view('dashboard.posts.index', compact('posts'));
+        return view('dashboard.posts.index', compact('posts'))->with('success', 'Bienvenido');
     }
 
     /**
@@ -118,7 +118,7 @@ class PostController extends Controller
         Post::create($request->validated());
 
         // retornar a la vista de crear posts
-        return to_route('post.index');
+        return to_route('post.index')->with('success', '¡Post creado con exito!');
     }
 
     /**
@@ -151,7 +151,7 @@ class PostController extends Controller
         }
 
         $post->update($data);
-        return to_route('post.index');
+        return to_route('post.index')->with('success', '¡Post actualizado con exito!');
     }
 
     /**

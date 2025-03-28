@@ -9,6 +9,10 @@
             <button type="button" class="btn btn-secondary btn-lg"><a href="{{ route('category.index') }}" class="text-decoration-none text-white">Back</a></button>
         </div>
 
+        @session('key')
+            <h1>{{ session('key') }}</h1>
+        @endsession
+
         @include('dashboard.fragment._errors-form')
 
         <form action="{{ route('category.store') }}" method="post">

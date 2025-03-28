@@ -17,6 +17,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // session(['key' => 'value']);
+        // session()->forget('key');
+        // session()->flush();
+        // dd($value);
+
         $categories = Category::paginate(3);
         return view('dashboard.categories.index', compact('categories'));
     }
@@ -54,7 +59,7 @@ class CategoryController extends Controller
         /* $validated = $request;
         dd($validated->errors()); */
         $categories = Category::paginate(3);
-        return view('dashboard.categories.index', compact('categories'));
+        return to_route('category.index', compact('categories'))->with('success', '¡Category created successfully!');
     }
 
     /**
@@ -86,7 +91,7 @@ class CategoryController extends Controller
         }
 
         $category->update($data);
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('success', '¡Category updated successfully!');
     }
 
     /**
