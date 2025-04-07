@@ -1,5 +1,7 @@
 @extends('dashboard.master')
 
+<br>
+
 @section('content')
 
     @session('success')
@@ -10,17 +12,19 @@
 
     <div class="container">
 
-        <div class="text-center mt-3 mb-3">
-            <h2>Index category</h2>
+        <div class="flex flex-col items-center mx-auto w-75 mt-4">
+            <div class="title-category">
+                <h2>Table Category</h2>
+            </div>
         </div>
 
-        <div class="mb-3 text-center">
-            <button type="button" class="btn btn-success btn-lg"><a href="{{ route('category.create') }}"
-                    class="text-decoration-none text-white">Create</a></button>
+        <div class="container-btn-volver">
+            <button type="button" class="btn btn-lg mb-3"><a href="{{ route('category.create') }}"
+                    class="text-decoration-none">Create</a></button>
         </div>
 
 
-        <table class="table table-striped text-center">
+        <table class="table text-center">
             <thead class="table-dark">
                 <tr>
                     <th>Id</th>
@@ -50,7 +54,9 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $categories->links() }}
+        <div class="paginate">
+            {{ $categories->links() }}
+        </div>
     </div>
 
 

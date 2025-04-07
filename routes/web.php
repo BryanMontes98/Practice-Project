@@ -1,48 +1,38 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\PostController;
-use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Rutas de prueba
-/* Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/contact', function () {
-    // return redirect('contact');
-    // return redirect()->route('contact');
-    return view('contact');
-})->name('contact');
-
-Route::get('/contact-dos', function () {
-    return view('contact-dos');
-}); */
-
-// ----- Rutas de Dashboard -----
-
-// ► Diferentes formas de agrupar rutas
-
-/* Route::prefix('dashboard')->group(function () {
-    Route::resource('category', CategoryController::class);
-    Route::resource('post', PostController::class);
-}); */
-
-/* Route::resources(
-    [
-        'category' => CategoryController::class,
-        'post' => PostController::class,
-    ]
-); */
-
-Route::group(['prefix' => 'dashboard'], function () {
-    Route::resource('category', CategoryController::class);
-    Route::resource('post', PostController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+/* Formas de crear rutas con Middleware y Prefijo */
+// Route::prefix('dashboard')->middleware('auth')->group(function () {
+//     Route::resource('post', PostController::class);
+//     Route::resource('category', CategoryController::class);
+// });
 
+// Route::middleware('auth')->prefix('dashboard')->group(function () {
+//     Route::resource('post', PostController::class);
+//     Route::resource('category', CategoryController::class);
+// });
+
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    Route::resource('post', PostController::class);
+    Route::resource('category', CategoryController::class);
+});
+
+require __DIR__.'/auth.php';
