@@ -6,7 +6,7 @@
 
 /* TITLES */
 .title-category {
-    @apply border-double border-x-8 border-black w-1/3 block mx-auto text-center p-2 rounded-lg shadow-xl;
+    @apply block mx-auto text-center p-2 rounded-lg border-double border-x-8 border-black shadow-xl bg-white;
 }
 
 .title-category h2 {
@@ -27,40 +27,35 @@
 }
 
 .container-btn-volver {
-    @apply  w-5/6 mx-auto;
+    @apply w-5/6 mx-auto flex md:justify-start justify-center;
 }
 
 .container-btn-volver button {
-    @apply w-36 rounded-3xl border-2 border-lime-600 text-lime-700 hover:duration-200 hover:ease-in hover:ring-4 hover:text-blue-500;
+    @apply w-36 rounded-3xl border-2 border-lime-600 text-lime-700 hover:duration-200 hover:ease-in hover:ring-4 hover:text-blue-500 mt-5;
 }
 
 .table .btn-primary {
-    @apply px-6 py-2 font-semibold text-blue-500 border-2 border-blue-500 rounded-lg bg-white transition-all duration-700 ease-in-out
-    hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white;
+    @apply px-6 py-2 font-semibold text-blue-500 border-2 border-blue-500 rounded-lg bg-white transition-all duration-700 ease-in-out hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white mt-2;
 }
 
 .table .btn-warning {
-    @apply px-6 py-2 font-semibold text-yellow-500 border-2 border-yellow-500 rounded-lg bg-white transition-all duration-700 ease-in-out
-    hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-600 hover:text-white;
+    @apply px-6 py-2 font-semibold text-yellow-500 border-2 border-yellow-500 rounded-lg bg-white transition-all duration-700 ease-in-out hover:bg-gradient-to-r hover:from-yellow-500 hover:to-yellow-600 hover:text-white mt-2;
 }
 
 .table .btn-danger {
-    @apply px-5 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-lg bg-white transition-all duration-700 ease-in-out
-    hover:bg-gradient-to-r hover:from-red-500 hover:to-red-800 hover:text-white;
+    @apply px-5 py-2 font-semibold text-red-500 border-2 border-red-500 rounded-lg bg-white transition-all duration-700 ease-in-out hover:bg-gradient-to-r hover:from-red-500 hover:to-red-800 hover:text-white mt-2;
 }
 
 .table .btn-info {
-    @apply px-5 py-2 font-semibold text-teal-400 border-2 border-teal-400 rounded-lg bg-white transition-all duration-700 ease-in-out
-    hover:bg-gradient-to-r hover:from-teal-400 hover:to-teal-600 hover:text-white;
+    @apply px-5 py-2 font-semibold text-teal-400 border-2 border-teal-400 rounded-lg bg-white transition-all duration-700 ease-in-out hover:bg-gradient-to-r hover:from-teal-400 hover:to-teal-600 hover:text-white mt-2;
 }
 
 
 /* CSS PAGINATE */
 .paginate {
-    @apply flex justify-evenly items-center tracking-wide ;
+    @apply flex justify-evenly items-center tracking-wide;
 }
 
 .paginate div {
     @apply flex-col leading-5;
 }
-
