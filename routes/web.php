@@ -5,13 +5,15 @@ use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\UserAccessDashboardMiddleware;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -30,9 +32,13 @@ Route::middleware('auth')->group(function () {
 //     Route::resource('category', CategoryController::class);
 // });
 
-Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', UserAccessDashboardMiddleware::class]], function () {
     Route::resource('post', PostController::class);
     Route::resource('category', CategoryController::class);
+
+    Route::get('/', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
 });
 
 require __DIR__.'/auth.php';
