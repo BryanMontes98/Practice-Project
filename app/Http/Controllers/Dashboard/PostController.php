@@ -12,11 +12,20 @@ use App\Models\Post;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 use function Psy\debug;
 
 class PostController extends Controller
 {
+    /**
+     * function to modify the date in Spanish.
+     */
+    public function __construct()
+    {
+        Carbon::setLocale('es');
+    }
+
     /**
      * Display a listing of the resource.
      */

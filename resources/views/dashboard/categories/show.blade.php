@@ -17,16 +17,16 @@
                         <div class="d-flex">
                             <div class="row col-6 p-2">
                                 <div class="card p-3 ">
-                                    <div><b>Title:</b> {{ $category->title }}</div>
+                                    <div><b>Title: </b> {{ $category->title }} .</div>
                                 </div>
                                 <div class="card p-3 ">
-                                    <div><b>Slug:</b> {{ $category->slug }}</div>
+                                    <div><b>Slug: </b> {{ $category->slug }} .</div>
                                 </div>
                                 <div class="card p-3 ">
-                                    <div><b>Create at:</b> {{ $category->created_at }}</div>
+                                    <div><b>Create at: </b> {{ ucfirst($category->created_at->diffForHumans()); }} .</div>
                                 </div>
                             </div>
-                            <div class="col-6 text-center">
+                            <div class="mx-auto">
                                 <img src="../../img/img-not-found.jpg" alt="{{ $category->title }}" width="200" height="200">
                                 <div><b>Name image:</b> {{ $category->image ? $category->image : 'No image' }}</div>
                             </div>

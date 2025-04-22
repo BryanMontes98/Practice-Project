@@ -1,42 +1,45 @@
 @extends('dashboard.master')
 <br>
 @section('content')
-    <br><button type="button" class="btn btn-info ms-5"><a href="{{ route('post.index') }}" class="text-decoration-none text-light">Back</a></button>
+    <br><button type="button" class="btn btn-info ms-5"><a href="{{ route('post.index') }}"
+            class="text-decoration-none text-light">Back</a></button>
 @endsection
 
 @section('morecontent')
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header bg-danger text-white">
-                    <h4 class="card-title text-center">Edit Post</h4>
-                </div>
-                <div class="d-flex mt-4 mb-4 p-4">
-                    <div class="card-body col-6">
-                        <div class="col-6">
-                            <h4><b>Title:</b> {{ $post->title . '.' }}</h4>
-                        </div>
-                        <div class="col-6">
-                            <h4><b>Content:</b> {{ $post->content . '.' }}</h4>
-                        </div>
-                        <div class="col-6">
-                            <h4><b>Description:</b> {{ $post->description . '.' }}</h4>
-                        </div>
-                        <div class="col-6">
-                            <h4><b>Posted:</b> {{ $post->posted . '.' }}</h4>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <div><b class="fs-5">SHOW DATA: </b>{{ $post->title }}</div>
                     </div>
-                    <div class="text-center col-6">
-                        <div class="col-12 text-center">
-                            <img src="{{ $post->image ? '../../updates/posts/' . $post->image : '../../img/img-not-found.jpg'}}" alt="{{ $post->title }}" width="200">
-                            <h4><b>Title:</b> {{ $post->image ? $post->image . '.' : 'No Image' }}</h4>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="row col-6 p-2">
+                                <div class="card p-3 ">
+                                    <div><b>Title: </b> {{ $post->title }} .</div>
+                                </div>
+                                <div class="card p-3 ">
+                                    <div><b>Content: </b> {{ $post->content }} .</div>
+                                </div>
+                                <div class="card p-3 ">
+                                    <div><b>Description: </b> {{ $post->description }} .</div>
+                                </div>
+                                <div class="card p-3 ">
+                                    <div><b>Posted: </b> {{ $post->posted }} .</div>
+                                </div>
+                                <div class="card p-3 ">
+                                    <div><b>Create at: </b> {{ ucfirst($post->created_at->diffForHumans()); }} .</div>
+                                </div>
+                            </div>
+                            <div class="mx-auto my-auto">
+                                <img src="../../img/img-not-found.jpg" alt="{{ $post->title }}" width="200" height="200">
+                                <div><b>Name image:</b> {{ $post->image ? $post->image : 'No image' }}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
